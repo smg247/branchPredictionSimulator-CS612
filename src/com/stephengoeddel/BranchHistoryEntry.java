@@ -1,23 +1,23 @@
 package com.stephengoeddel;
 
 public class BranchHistoryEntry {
-    private final int key;
-    private int history;
+    private final String key;
+    private String history;
 
-    public BranchHistoryEntry(int key, int history) {
+    public BranchHistoryEntry(String key, String history) {
         this.key = key;
         this.history = history;
     }
 
-    public int getKey() {
+    public String getKey() {
         return key;
     }
 
-    public int getHistory() {
+    public String getHistory() {
         return history;
     }
 
-    public void setHistory(int history) {
+    public void setHistory(String history) {
         this.history = history;
     }
 }

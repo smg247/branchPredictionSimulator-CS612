@@ -1,19 +1,13 @@
 package com.stephengoeddel;
 
 public class ProgramCounter {
-    private final int pc;
-    private final int pcIfTaken;
+    private final String pc;
 
-    public ProgramCounter(int pc, int pcIfTaken) {
+    public ProgramCounter(String pc) {
         this.pc = pc;
-        this.pcIfTaken = pcIfTaken;
     }
 
-    public int getPc() {
+    public String getPc() {
         return pc;
-    }
-
-    public int getPcIfTaken() {
-        return pcIfTaken;
     }
 }
