@@ -10,4 +10,9 @@ public class ProgramCounter {
     public String getPc() {
         return pc;
     }
+
+    @Override
+    public String toString() {
+        return "Program Counter: " + pc;
+    }
 }

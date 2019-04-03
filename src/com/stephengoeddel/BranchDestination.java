@@ -16,4 +16,9 @@ public class BranchDestination {
     public String getPcIfTaken() {
         return pcIfTaken;
     }
+
+    @Override
+    public String toString() {
+        return "Branch Destination: " + key + "-->" + pcIfTaken;
+    }
 }
