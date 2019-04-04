@@ -1,24 +1,33 @@
 package com.stephengoeddel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BranchDestination {
-    private final String key;
-    private final String pcIfTaken;
+    private Map<String, String> destinationMap;
 
-    public BranchDestination(String key, String pcIfTaken) {
-        this.key = key;
-        this.pcIfTaken = pcIfTaken;
+    public BranchDestination() {
+        destinationMap = new HashMap<String, String>();
     }
 
-    public String getKey() {
-        return key;
+    public static String findDestinationForKey(String key, BranchDestination branchDestination) {
+        String destination = branchDestination.getDestinationForKey(key);
+        if (destination == null) {
+            throw new IllegalStateException("Branch Destination not found for key: " + key);
+        }
+
+        return destination;
     }
 
-    public String getPcIfTaken() {
-        return pcIfTaken;
+    public static String formatBranchDestinationForPrinting(String branchDestination) {
+        return "Branching to PC: " + branchDestination;
     }
 
-    @Override
-    public String toString() {
-        return "Branch Destination: " + key + "-->" + pcIfTaken;
+    public void updateDestination(String key, String history) {
+        destinationMap.put(key, history);
+    }
+
+    public String getDestinationForKey(String key) {
+        return destinationMap.get(key);
     }
 }
