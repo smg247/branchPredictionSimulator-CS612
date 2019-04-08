@@ -75,7 +75,7 @@ public class BranchPredictor {
             System.out.println("New Branch History: " + newHistoryValue);
 
         }
-
+        System.out.println();
         System.out.println("Total correct predictions " + numberOfCorrectPredictions + "/" + numberOfCycles);
     }
 
