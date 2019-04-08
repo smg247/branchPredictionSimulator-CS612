@@ -4,9 +4,16 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         System.out.println("Welcome to the Branch Prediction Simulation using a 2-bit counter!");
         Scanner in = new Scanner(System.in);
+
+        System.out.println("Firstly, would you like to watch as the simulation runs (1), or just skip to the results (2)?: ");
+        int dramaticMode = in.nextInt();
+        while (dramaticMode < 1 || dramaticMode > 2) {
+            System.out.println("Enter 1 or 2");
+            dramaticMode = in.nextInt();
+        }
 
         System.out.println("Choose the total number of program counters (representing potential branches) in the program (1 - 1000): ");
         int numberOfPCs = in.nextInt();
@@ -40,7 +47,7 @@ public class Main {
             branchOddsChoice = in.nextInt();
         }
 
-        BranchPredictor branchPredictor = new BranchPredictor(numberOfPCs, numberOfCycles, keyLength, BranchOdds.values()[branchOddsChoice]);
+        BranchPredictor branchPredictor = new BranchPredictor(numberOfPCs, numberOfCycles, keyLength, BranchOdds.values()[branchOddsChoice], dramaticMode == 1);
         branchPredictor.seed();
         branchPredictor.runSimulation();
     }

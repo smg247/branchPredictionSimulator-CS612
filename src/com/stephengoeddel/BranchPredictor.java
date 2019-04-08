@@ -3,6 +3,7 @@ package com.stephengoeddel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class BranchPredictor {
 
@@ -14,21 +15,23 @@ public class BranchPredictor {
     private int numberOfPCs;
     private int numberOfCycles;
     private final int keyLength;
+    private final boolean dramaticMode;
 
     private int numberOfCorrectPredictions;
 
-    public BranchPredictor(int numberOfPCs, int numberOfCycles, int keyLength, BranchOdds branchOdds) {
+    public BranchPredictor(int numberOfPCs, int numberOfCycles, int keyLength, BranchOdds branchOdds, boolean dramaticMode) {
         this.numberOfPCs = numberOfPCs;
         this.numberOfCycles = numberOfCycles;
         this.keyLength = keyLength;
         this.branchOdds = branchOdds;
+        this.dramaticMode = dramaticMode;
 
         programCounters = new ArrayList<ProgramCounter>();
         branchHistory = new BranchHistory();
         branchDestination = new BranchDestination();
     }
 
-    public void runSimulation() {
+    public void runSimulation() throws InterruptedException {
         Random random = new Random();
         for (int i = 0; i < numberOfCycles; i++) {
             System.out.println("============ New PC ============");
@@ -73,6 +76,10 @@ public class BranchPredictor {
             String newHistoryValue = BranchHistory.calculateNewHistoryValue(history, takeBranch);
             branchHistory.updateHistory(key, newHistoryValue);
             System.out.println("New Branch History: " + newHistoryValue);
+
+            if (dramaticMode) {
+                TimeUnit.SECONDS.sleep(2);
+            }
 
         }
         System.out.println();
